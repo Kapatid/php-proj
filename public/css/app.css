@@ -140,6 +140,10 @@ header > nav .nav-links {
   align-items: center;
 }
 
+header > nav #nav-toggle {
+  display: none;
+}
+
 header > nav .logo {
   display: flex;
   align-items: center;
