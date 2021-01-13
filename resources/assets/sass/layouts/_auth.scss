@@ -1,0 +1,25 @@
+.container-login,
+.container-signup {
+  display: grid;
+  justify-items: center;
+  box-shadow: 0 0px 19px rgba(0, 0, 0, 0.12);
+  padding: 20px 140px 20px 140px;
+  border-radius: 30px;
+  height: fit-content;
+  grid-template-rows: 0.15fr 0.15fr 0.6fr 0.1fr;
+
+  #logo {
+    margin-top: 20px;
+  }
+
+  section > p {
+    display: grid;
+
+    label {
+      margin-left: 10px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: rgb(99, 99, 99);
+    }
+  }
+}
