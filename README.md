@@ -5,9 +5,9 @@ and Technology.
 
 ### Group Members
 
-@Kapatid
-@Koruuin
-@Omni-ssiah
+[@Kapatid](https://github.com/Kapatid/php-proj)
+[@Koruuin](https://github.com/Koruuin/php-proj)
+[@Omni-ssiah](https://github.com/Omni-ssiah/php-proj)
 
 ### Build
 
