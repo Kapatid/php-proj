@@ -1,16 +1,42 @@
 <?php
 
-$_SESSION['routes'] = ["index.php", "home", "profile"];
+$_SESSION['routes'] = ["/", "/home", "/login", "/signup", "/logout", "/profile"];
 
-Route::set('index.php', function() {
-    HomeController::CreateView('Home');
-});
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    Route::set('/', function() {
+        HomeController::index();
+        HomeController::CreateView('Home');
+    });
+    
+    Route::set('/home', function() {
+        HomeController::index();
+        HomeController::CreateView('Home');
+    });
+    
+    Route::set('/login', function() {
+        LoginController::CreateView('Login');
+    });
+    
+    Route::set('/signup', function() {
+        SignupController::CreateView('Signup');
+    });
+    
+    Route::set('/profile', function() {
+        ProfileController::index();
+        ProfileController::CreateView('Profile');
+    });
+}
 
-Route::set('home', function() {
-    HomeController::CreateView('Home');
-});
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    Route::set('/login', function() {
+        LoginController::login();
+    });
 
-Route::set('profile', function() {
-    ProfileController::index();
-    ProfileController::CreateView('Profile');
-});
+    Route::set('/signup', function() {
+        SignupController::signup();
+    });
+
+    Route::set('/logout', function() {
+        LoginController::logout();
+    });
+}

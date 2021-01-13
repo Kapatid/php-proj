@@ -9,13 +9,12 @@ class Route {
 
         // print_r(self::$validRoutes); 
 
-        if ($_GET['url'] == $route) {
+        if ($_SERVER['REQUEST_URI'] == $route) {
             $function->__invoke();
         }
-        elseif (!in_array($_GET['url'], $_SESSION['routes'])) {
-            require_once(__DIR__ . "./app/Layouts/error.php");
+        elseif (!in_array($_SERVER['REQUEST_URI'], $_SESSION['routes'])) {
+            echo "PAGE NOT FOUND";
             exit;
         }
-        
     }
 }

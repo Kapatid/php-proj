@@ -36,14 +36,10 @@
 }
 
 .input {
-  height: 60%;
-  padding-left: 14px;
-  padding-right: 14px;
-  width: 150px;
   border-radius: 60px;
-  border: white solid;
+  border: #d6d6d6 0.8px solid;
   outline: none;
-  box-shadow: 0 0px 1.5px -4px rgba(0, 0, 0, 0.12), 0 0px 12px -4px rgba(0, 0, 0, 0.24);
+  padding: 5px 10px;
 }
 
 .input::placeholder {
@@ -159,29 +155,21 @@ header > nav .logo img {
 }
 
 header > nav .nav-links {
-  margin: 0;
-  padding: 0;
   transition: 0.6s ease-out;
 }
 
 header > nav .nav-links a:not(.btn) {
   margin-right: 20px;
   font-size: 1rem;
+  font-weight: lighter;
   width: fit-content;
+  height: fit-content;
   color: white;
 }
 
-header > nav .nav-links a:not(.btn)::after {
+header > nav .nav-links a:not(.btn):hover {
   display: block;
-  content: "";
-  border-bottom: solid 3px #5d7589;
-  transform: scaleX(0);
-  transition: transform 0.3s;
-  transform-origin: 50%;
-}
-
-header > nav .nav-links a:not(.btn):hover::after {
-  transform: scaleX(1);
+  border-bottom: solid 0.8px white;
 }
 
 header > nav .icon-menu {
@@ -253,6 +241,35 @@ header > nav .icon-menu .line {
   }
 }
 
+.container-login,
+.container-signup {
+  display: grid;
+  justify-items: center;
+  box-shadow: 0 0px 19px rgba(0, 0, 0, 0.12);
+  padding: 20px 140px 20px 140px;
+  border-radius: 30px;
+  height: fit-content;
+  grid-template-rows: 0.15fr 0.15fr 0.6fr 0.1fr;
+}
+
+.container-login #logo,
+.container-signup #logo {
+  margin-top: 20px;
+}
+
+.container-login section > p,
+.container-signup section > p {
+  display: grid;
+}
+
+.container-login section > p label,
+.container-signup section > p label {
+  margin-left: 10px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #636363;
+}
+
 .container-modal {
   z-index: 2;
   position: fixed;
@@ -312,9 +329,10 @@ body {
 }
 
 .main-body {
-  height: 100%;
+  min-height: fit-content;
+  max-height: 100%;
   width: 100%;
-  margin-top: 14%;
+  margin-top: 150px;
 }
 
 .container-bg {

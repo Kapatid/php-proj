@@ -1,11 +1,25 @@
 <?php
 
+(new DotEnv('./.env'))->load(); // Read .env contents
 class Database {
-    private $host = "localhost";
-    private $user = "root";
-    private $pwd = "";
-    private $dbName = "oop_php";
+    private $host;
+    private $user;
+    private $pwd;
+    private $dbName;
 
+    /**
+     * Initializes once the class have been instantiated
+     */
+    function __construct() {
+        $this->host = getenv('DB_HOST');
+        $this->user = getenv('DB_USERNAME');
+        $this->pwd = getenv('DB_PASSWORD');
+        $this->dbName = getenv('DB_NAME');
+    }
+
+    /**
+     * Connect to database
+     */
     protected function connect() {
 
         try {
@@ -24,4 +38,80 @@ class Database {
         }
 
     }
+
+    /**
+     * Get all rows inside a table
+     */
+    protected function getAll(string $table_name) {
+        $query = "SELECT * 
+                FROM $table_name";
+        
+        $stmt = $this->connect()->query($query); // Executes query
+        $rows = $stmt->fetchAll(); // Gets query results
+
+        return $rows;
+    }
+
+    /**
+     * Find a row by id or email
+     */
+    protected function find(int $id = null, string $email = null) {
+        if ($email !== null) {
+            $query = "SELECT * 
+                FROM users
+                WHERE `email`=?"; // Made to prevention harmful injections by users
+        
+            $stmt = $this->connect()->prepare($query); // prepare() is used to bind any user-input
+            $stmt->execute([$email]); // execute() executes a prepared statement
+            $row = $stmt->fetch();
+
+            return $row;
+        }
+
+        if ($id !== null) {
+            $query = "SELECT * 
+                FROM users
+                WHERE id = ?";
+        
+            $stmt = $this->connect()->prepare($query);
+            $stmt->execute([$id]);
+            $row = $stmt->fetch();
+
+            return $row;
+        }
+    }
+
+    /**
+     * Insert new row to table
+     */
+    protected function create(string $table_name, array $data) {
+        $key = array_keys($data);  // get key( column name)
+
+        $values = array_values($data);  // get values (values to be inserted)
+
+        $placeholders = implode(',', array_fill(0, count($data), '?')); // create '?' based on count
+
+        $query = "INSERT INTO $table_name ( " . implode(',' , $key) . ") VALUES($placeholders)";
+        
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute($values);
+    }
+
+    /**
+     * Update row inside a table
+     */
+    protected function update(string $table_name, int $id, array $data) {
+        $key = array_keys($data);  // get key( column name)
+
+        $values = array_values($data);  // get values (values to be inserted)
+
+        $query = "UPDATE $table_name 
+                  SET " . "`" . implode('`=?, `' , $key) . "`=? " .
+                  " WHERE `id` = $id";
+
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute($values);
+    }
+
+    
 }

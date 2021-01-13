@@ -23,13 +23,5 @@
 
     <br> <br> <br> -->
 
-    <p>hello</p>
-
-    <?php 
-        foreach ($_SESSION["users"] as $user) {
-            echo $user['first_name'] . " " . $user['last_name'] . "<br>";
-        }
-        unset($_SESSION);
-        session_destroy();
-    ?>
+    <p>Hello! <?php echo $_SESSION['auth']['first_name']; ?></p>
 </section>
