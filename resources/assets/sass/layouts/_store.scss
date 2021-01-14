@@ -1,0 +1,145 @@
+#container-store {
+  width: 75%;
+  margin-top: 140px;
+
+  display: grid;
+  place-items: center;
+
+  #container-store-search {
+    width: 500px;
+    height: 50px;
+    padding: 0 30px 0 30px;
+    background-color: white;
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 40px;
+
+    display: grid;
+    align-items: center;
+    gap: 0;
+    grid-template-columns: 1fr 50px;
+
+    input {
+      padding-left: 30px;
+      border-top-right-radius: 40px;
+      border-bottom-right-radius: 40px;
+      border: none;
+      outline: none;
+    }
+  }
+
+  #container-store-items {
+    width: 100%;
+    margin-top: 30px;
+
+    display: grid;
+    grid-gap: 5.36rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+    .container-store-item {
+      width: 250px;
+      height: fit-content;
+      padding: 30px 30px 15px 30px;
+      box-shadow: 0 0px 8px rgba(0, 0, 0, 0.15);
+      border-radius: 30px;
+      overflow: hidden;
+      transition: all 0.5s ease;
+
+      display: grid;
+
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      .store-item-price {
+        color: gray;
+      }
+
+      .container-store-add {
+        width: 100%;
+
+        display: grid;
+        place-items: center;
+
+        .btn-store-add {
+          background-color: rgb(49, 209, 49);
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+#container-btn-cart {
+  height: 60px;
+  width: 60px;
+  left: 90%;
+  bottom: 80px;
+  position: sticky;
+  background-color: rgb(50, 170, 50);
+  border-radius: 50%;
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+
+  #store-item-count {
+    height: 28px;
+    width: 28px;
+    position: absolute;
+    border-radius: 50%;
+    bottom: 36px;
+    left: 36px;
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.2);
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+
+    display: none;
+    place-items: center;
+  }
+}
+
+#modal-content-checkout {
+  width: inherit;
+
+  display: grid;
+  place-items: center;
+
+  table {
+    border-collapse: collapse;
+    th {
+      font-size: 0.8rem;
+      font-weight: bold;
+      position: sticky;
+    }
+
+    tr {
+      border-top: 1px solid $disabled;
+
+      &:first-of-type {
+        border-bottom: 2px solid black;
+        border-top: none;
+      }
+      &:nth-of-type(2) {
+        border: none;
+      }
+
+      td:nth-of-type(2) {
+        max-width: 300px;
+      }
+    }
+
+    th,
+    td {
+      padding: 15px;
+      text-align: center;
+    }
+  }
+}

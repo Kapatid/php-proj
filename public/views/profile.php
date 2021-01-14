@@ -23,5 +23,5 @@
 
     <br> <br> <br> -->
 
-    <p>Hello! <?php echo $_SESSION['auth']['first_name']; ?></p>
+    <p style="margin-top: 140px;">Hello! <?php echo $_SESSION['auth']['first_name']; ?></p>
 </section>

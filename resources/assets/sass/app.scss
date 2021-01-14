@@ -14,12 +14,13 @@ $desktop: 1200px;
 
 //@import "base/reset";
 @import "components/buttons";
-//@import "functions";
+@import "functions";
 @import "components/icons";
 @import "components/navigation";
 @import "layouts/auth";
 @import "components/modals";
 @import "layouts/profile";
+@import "layouts/store";
 @import "layouts/footer";
 
 *:focus {
@@ -53,7 +54,6 @@ body {
   min-height: fit-content;
   max-height: 100%;
   width: 100%;
-  margin-top: 150px;
 
   @extend .grid-default;
 }

@@ -29,15 +29,46 @@ function theDomHasLoaded(e) {
 }
 
 function pageFullyLoaded(e) {
-  modals();
+  storeFunctions();
 }
 
-function modals() {
+function storeFunctions() {
+  let itemsInCart = [];
+  let jsonString = JSON.stringify(itemsInCart);
+
+  $(".icon-search").on("click", function () {
+    storeSearch();
+  });
+
+  $("#store-search").keypress(function (e) {
+    if (e.which == 13) {
+      storeSearch();
+    }
+  });
+
+  $(".btn-store-add").on("click", function () {
+    let id = $(this).data("id"); // Get id from button
+
+    // populate itemsInCart
+    if (!itemsInCart.includes(id)) {
+      itemsInCart.push(id);
+      console.log("Item added in cart");
+    } else {
+      console.log("Item is already in cart");
+    }
+
+    $.ajaxSetup({ cache: false });
+
+    // Put all cart items into a $_SESSION
+    $.get("item?item_id=" + jsonString, function () {
+      alert("Update");
+    });
+
+    $("#store-item-count").css({ display: "grid" }).html(itemsInCart.length);
+  });
+
   $(".open-modal").on("click", function () {
     const height = $(window).height();
-    let id = $(this).data("id"); // Get id from button
-    currentId = id;
-    let request = $.get("/store/" + id); // Get place object
 
     // SHOW MODAL
     if (height > 768) {
@@ -53,22 +84,38 @@ function modals() {
         $(".container-modal").fadeIn(220).css({ display: "grid" });
       });
     }
-
-    $(".container-modal").css({ top: 0 });
-
-    // $.ajax({
-    //     type: "GET",
-    //     url: url,
-    //     success: function(place) {
-    //         console.log(place);
-    //     }
-    // });
-
-    request.done(function (response) {
-      // Change html elements of book modal
-      $(".show-origin").html(response.origin);
-      $(".show-destination").html(response.destination);
-      $(".show-price").html("₱ " + thousandsSeparators(response.price));
-    });
   });
+
+  $(".exit-modal-book").on("click", function () {
+    // Animation for exit
+    $(".container-bg").fadeOut(220);
+    $(".container-modal").fadeOut(220);
+  });
+}
+
+/**
+ * Search function for search bar
+ *
+ * @return void
+ */
+function storeSearch() {
+  const allStoreItems = $(".container-store-item")
+    .map(function () {
+      return this;
+    })
+    .get();
+
+  for (let i in allStoreItems) {
+    let itemName = allStoreItems[
+      i
+    ].firstElementChild.nextElementSibling.innerHTML
+      .toLowerCase()
+      .includes($("#store-search").val().toLowerCase());
+
+    if (itemName != false) {
+      $(allStoreItems[i]).show();
+    } else {
+      $(allStoreItems[i]).hide();
+    }
+  }
 }

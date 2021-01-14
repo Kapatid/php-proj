@@ -1,0 +1,137 @@
+@function _buildIcon($icon, $width, $height, $v1, $v2, $v3, $v4) {
+  $icon: '<svg width="#{$width}" height="#{$height}" viewBox="#{$v1} #{$v2} #{$v3} #{$v4}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">#{$icon}</svg>';
+  @return $icon;
+}
+
+@function icon(
+  $icon-name,
+  $color,
+  $width: 54px,
+  $height: 54px,
+  $vb1: 0,
+  $vb2: 0,
+  $vb3: 54,
+  $vb4: 54,
+  $stroke-color: transparent,
+  $stroke-width: 0,
+  $css: "" // arbitrary css
+) {
+  $icons: (
+    person:
+      '<path fill="#{$color}" stroke="#{$stroke-color}" stroke-width="#{$stroke-width}" style="#{$css}" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>',
+    person-add:
+      '<path fill="#{$color}" stroke="#{$stroke-color}" stroke-width="#{$stroke-width}" style="#{$css}" d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>',
+    google:
+      '<path fill="#{$color}" stroke="#{$stroke-color}" stroke-width="#{$stroke-width}" style="#{$css}" d="m 25.089844,20.476562 v 7.644532 H 35.980469 C 34.554688,32.75 30.6875,36.0625 25.089844,36.0625 18.425781,36.0625 13.023438,30.660156 13.023438,24 c 0,-6.660156 5.402343,-12.0625 12.066406,-12.0625 2.996094,0 5.730468,1.097656 7.84375,2.90625 l 5.625,-5.628906 C 35.007812,5.976562 30.277344,4 25.089844,4 14.042969,4 5.085938,12.953125 5.085938,24 c 0,11.046875 8.957031,20 20.003906,20 16.792968,0 20.5,-15.699219 18.851562,-23.496094 z m 0,0"/>',
+    facebook:
+      '<path fill="#{$color}" stroke="#{$stroke-color}" stroke-width="#{$stroke-width}" style="#{$css}" d="M 35.050781,18 H 28 v -4 c 0,-2.0625 0.167969,-3.363281 3.125,-3.363281 h 3.738281 V 4.277344 C 33.042969,4.089844 31.214844,3.996094 29.386719,4 23.960938,4 20,7.3125 20,13.398438 V 18 h -6 v 8 l 6,-0.0039 V 44 h 8 V 25.992188 h 6.132812 z m 0,0"/>',
+    search:
+      '<path fill="#{$color}" stroke="#{$stroke-color}" stroke-width="#{$stroke-width}" style="#{$css}" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>',
+    exit:
+      '<path fill="#{$color}" stroke="#{$stroke-color}" stroke-width="#{$stroke-width}" style="#{$css}" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>',
+    expand:
+      '<path fill="#{$color}" stroke="#{$stroke-color}" stroke-width="#{$stroke-width}" style="#{$css}" d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>',
+    edit:
+      '<path fill="#{$color}" stroke="#{$stroke-color}" stroke-width="#{$stroke-width}" style="#{$css}" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>',
+    cart:
+      '<path fill="#{$color}" stroke="#{$stroke-color}" stroke-width="#{$stroke-width}" style="#{$css}" d="M17,18A2,2 0 0,1 19,20A2,2 0 0,1 17,22C15.89,22 15,21.1 15,20C15,18.89 15.89,18 17,18M1,2H4.27L5.21,4H20A1,1 0 0,1 21,5C21,5.17 20.95,5.34 20.88,5.5L17.3,11.97C16.96,12.58 16.3,13 15.55,13H8.1L7.2,14.63L7.17,14.75A0.25,0.25 0 0,0 7.42,15H19V17H7C5.89,17 5,16.1 5,15C5,14.65 5.09,14.32 5.24,14.04L6.6,11.59L3,4H1V2M7,18A2,2 0 0,1 9,20A2,2 0 0,1 7,22C5.89,22 5,21.1 5,20C5,18.89 5.89,18 7,18M16,11L18.78,6H6.14L8.5,11H16Z"/>',
+  );
+
+  $icon: _buildIcon(
+    map-get($icons, $icon-name),
+    $width,
+    $height,
+    $vb1,
+    $vb2,
+    $vb3,
+    $vb4
+  );
+  @return url("data:image/svg+xml;utf8,#{$icon}");
+}
+
+.sm-icon {
+  width: 25px;
+  height: 25px;
+}
+
+.icon-person-add {
+  @extend .sm-icon;
+  background-image: icon(person-add, white);
+}
+
+.icon-person {
+  @extend .sm-icon;
+  background-image: icon(person, str-replace(#{$secondary}, "#", "%23"));
+}
+
+.icon-facebook {
+  @extend .sm-icon;
+  background-size: 25px 25px;
+  background-image: icon(facebook, white);
+}
+
+.icon-google {
+  @extend .sm-icon;
+  background-size: 25px 25px;
+  background-image: icon(google, white);
+}
+
+.icon-search {
+  @extend .sm-icon;
+  background-size: 25px 25px;
+  background-image: icon(
+    search,
+    str-replace(#{$disabled}, "#", "%23"),
+    25,
+    25,
+    0,
+    0,
+    24,
+    24
+  );
+  cursor: pointer;
+
+  &:hover {
+    background-image: icon(search, rgba(0, 0, 0, 0.712), 25, 25, 0, 0, 25, 25);
+    border-radius: 5px;
+  }
+}
+
+.icon-exit {
+  width: 24px;
+  height: 24px;
+  background-size: 24px 24px;
+  background-image: icon(exit, rgb(0, 0, 0), 24, 24, 0, 0, 24, 24);
+  cursor: pointer;
+}
+
+.icon-expand {
+  width: 24px;
+  height: 24px;
+  background-size: 24px 24px;
+  background-image: icon(expand, rgb(0, 0, 0), 24px, 24px, 0, 0, 24, 24);
+}
+
+.icon-edit {
+  width: 16px;
+  height: 16px;
+  background-size: 100% 100%;
+  background-image: icon(
+    edit,
+    str-replace(#{$disabled}, "#", "%23"),
+    24px,
+    24px,
+    0,
+    0,
+    24,
+    24
+  );
+  cursor: pointer;
+}
+
+.icon-cart {
+  width: 24px;
+  height: 24px;
+  background-size: 24px 24px;
+  background-image: icon(cart, white, 24px, 24px, 0, 0, 24, 24);
+}

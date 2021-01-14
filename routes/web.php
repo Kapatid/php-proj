@@ -1,6 +1,11 @@
 <?php
 
-$_SESSION['routes'] = ["/", "/home", "/login", "/signup", "/logout", "/profile"];
+$id = 0;
+if (isset($_GET['item_id'])) {
+    $id = $_GET['item_id'];
+}
+
+$_SESSION['routes'] = ["/", "/home", "/login", "/signup", "/logout", "/profile", "/store", "/item?item_id=$id"];
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     Route::set('/', function() {
@@ -24,6 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     Route::set('/profile', function() {
         ProfileController::index();
         ProfileController::CreateView('Profile');
+    });
+
+    Route::set('/store', function() {
+        StoreController::index();
+        StoreController::CreateView('Store');
+    });
+
+    Route::set("/item?item_id=$id", function() {
+        StoreController::getItem();
     });
 }
 

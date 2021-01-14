@@ -1,3 +1,1 @@
-<section>
-    <a href="profile">Go To Profile</a> <br>
-</section>
+<a href="profile" style="margin-top: 140px;">Welcome!</a> <br>

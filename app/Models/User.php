@@ -9,7 +9,7 @@ class User extends Database {
 
     public static function findUser(int $id = 0, string $email = '', string $password = '') {
         $db = new Database();
-        $user = $db->find(0, $email);
+        $user = $db->find("users", $id, $email);
 
         if (password_verify($password, $user['password'])) {
             return $user;

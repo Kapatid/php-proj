@@ -55,10 +55,10 @@ class Database {
     /**
      * Find a row by id or email
      */
-    protected function find(int $id = null, string $email = null) {
+    protected function find(string $table_name, int $id = null, string $email = null) {
         if ($email !== null) {
             $query = "SELECT * 
-                FROM users
+                FROM $table_name
                 WHERE `email`=?"; // Made to prevention harmful injections by users
         
             $stmt = $this->connect()->prepare($query); // prepare() is used to bind any user-input
@@ -70,7 +70,7 @@ class Database {
 
         if ($id !== null) {
             $query = "SELECT * 
-                FROM users
+                FROM $table_name
                 WHERE id = ?";
         
             $stmt = $this->connect()->prepare($query);

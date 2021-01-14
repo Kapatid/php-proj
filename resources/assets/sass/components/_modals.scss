@@ -9,27 +9,36 @@
   justify-items: center;
 
   .modal-body {
-    width: 70%;
+    min-width: 700px;
+    max-width: 70%;
     background-color: white;
     border-radius: 30px;
 
-    grid-template-rows: 0.09fr 1fr;
+    @extend .grid-default;
+    grid-template-rows: 0.1fr 1fr 0.1fr;
 
-    .modal-header {
+    .modal-header,
+    .modal-footer {
       width: 100%;
       padding-top: 20px;
 
       display: grid;
-      justify-items: end;
+      justify-content: end;
 
       .icon-exit {
         margin-right: 7%;
       }
     }
 
+    .modal-footer {
+      justify-content: center;
+    }
+
     .modal-content {
       width: 100%;
+      margin-top: 20px;
       overflow-x: hidden;
+      border: none;
     }
   }
 }
