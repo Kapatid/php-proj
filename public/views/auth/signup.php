@@ -21,11 +21,6 @@
         </p>
 
         <p>
-            <label for="department">Department</label>
-            <input type="text" name="department" id="department" class="input"/>  
-        </p>
-
-        <p>
             <label for="password">Password</label>
             <input type="password" name="password" id="password" class="input"/>    
         </p>

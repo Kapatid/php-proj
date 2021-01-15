@@ -19,12 +19,11 @@ class User extends Database {
         }
     }
 
-    public function setUser(string $first_name, string $last_name, string $email, string $department, string $password) {
+    public function setUser(string $first_name, string $last_name, string $email, string $password) {
         $data = array(
         "first_name" => $first_name,
         "last_name" => $last_name,
         "email" => $email,
-        "department" => $department,
         "password" => $password
         );
 
