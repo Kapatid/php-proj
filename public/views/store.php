@@ -7,7 +7,7 @@
 
         <div class="modal-content">
             <?php 
-                echo json_encode($_SESSION['cart_items']);
+                // e/cho json_encode($_SESSION['cart_items']);
                 if (isset($_SESSION['cart_items']) || !empty($_SESSION['cart_items'])) {
                     $items = $_SESSION['cart_items'];
     

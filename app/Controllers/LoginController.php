@@ -23,7 +23,8 @@ class LoginController extends Controller {
 
     public static function logout() {
         $base_url = self::getUrl();
-        unset($_SESSION['auth']);
+        session_unset();
+        $_SESSION['auth'] = 'guest';
         echo "<meta http-equiv='refresh' content='0;URL=$base_url'>";
     }
 

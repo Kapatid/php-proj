@@ -61,7 +61,7 @@ function storeFunctions() {
 
     // Put all cart items into a $_SESSION
     $.get("item?item_id=" + jsonString, function () {
-      alert("Update");
+      console.log("db accessed...");
     });
 
     $("#store-item-count").css({ display: "grid" }).html(itemsInCart.length);

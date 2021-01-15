@@ -346,7 +346,7 @@ header > nav .icon-menu .line {
   margin-top: 30px;
   display: grid;
   grid-gap: 5.36rem;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 0.5fr));
 }
 
 #container-store #container-store-items .container-store-item {

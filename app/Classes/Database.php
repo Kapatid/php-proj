@@ -112,6 +112,4 @@ class Database {
         $stmt = $this->connect()->prepare($query);
         $stmt->execute($values);
     }
-
-    
 }

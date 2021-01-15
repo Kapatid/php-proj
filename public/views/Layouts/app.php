@@ -28,7 +28,7 @@
 
 
                 <?php
-                    if (isset($_SESSION['auth'])) {
+                    if (isset($_SESSION['auth']) && $_SESSION['auth'] != 'guest') {
                         echo '<a href="store">Store</a>';
                         echo '<a href="profile">Profile</a>';
                         echo '<form action="logout" method="POST">

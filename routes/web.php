@@ -5,40 +5,66 @@ if (isset($_GET['item_id'])) {
     $id = $_GET['item_id'];
 }
 
-$_SESSION['routes'] = ["/", "/home", "/login", "/signup", "/logout", "/profile", "/store", "/item?item_id=$id"];
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+function universalRoutes() {
+    
+    /**
+     * Route::set() takes in the uri request
+     * If it is successful run the function
+     * 
+     */
     Route::set('/', function() {
-        HomeController::index();
-        HomeController::CreateView('Home');
+        HomeController::index(); // Some function inside the given controller
+        HomeController::CreateView('Home'); // CreateView takes in the filename of a page
     });
     
     Route::set('/home', function() {
         HomeController::index();
         HomeController::CreateView('Home');
     });
-    
-    Route::set('/login', function() {
-        LoginController::CreateView('Login');
-    });
-    
-    Route::set('/signup', function() {
-        SignupController::CreateView('Signup');
-    });
-    
-    Route::set('/profile', function() {
-        ProfileController::index();
-        ProfileController::CreateView('Profile');
-    });
+}
 
-    Route::set('/store', function() {
-        StoreController::index();
-        StoreController::CreateView('Store');
-    });
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    Route::set("/item?item_id=$id", function() {
-        StoreController::getItem();
-    });
+    // Run authPage to prevent guest and user from accessing certain pages
+    if (Controller::authPage('auth', 'guest')) {
+        universalRoutes();
+
+        Route::set('/login', function() {
+            LoginController::CreateView('Login');
+        });
+        
+        Route::set('/signup', function() {
+            SignupController::CreateView('Signup');
+        });
+
+        if (isset($_SESSION['error'])) {
+            Controller::CreateView('error');
+            exit;
+        }
+    }
+    
+    if (!Controller::authPage('auth', 'guest')) {
+        universalRoutes();
+
+        Route::set('/profile', function() {
+            ProfileController::index();
+            ProfileController::CreateView('Profile');
+        });
+    
+        Route::set('/store', function() {
+            StoreController::index();
+            StoreController::CreateView('Store');
+        });
+    
+        Route::set("/item?item_id=$id", function() {
+            StoreController::getItem();
+        });
+
+        if (isset($_SESSION['error'])) {
+            Controller::CreateView('error');
+            exit;
+        }
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
