@@ -5,8 +5,8 @@ if (isset($_GET['item_id'])) {
     $id = $_GET['item_id'];
 }
 
+
 function universalRoutes() {
-    
     /**
      * Route::set() takes in the uri request
      * If it is successful run the function
@@ -78,5 +78,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     Route::set('/logout', function() {
         LoginController::logout();
+    });
+
+    Route::set("/purchase", function() {
+        StoreController::newReciept();
+    });
+
+    Route::set("/purchase-delete", function() {
+        ProfileController::deleteReceipt();
     });
 }

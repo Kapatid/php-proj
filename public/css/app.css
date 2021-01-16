@@ -308,9 +308,49 @@ header > nav .icon-menu .line {
 
 .container-modal .modal-body .modal-content {
   width: 100%;
+  max-height: 400px;
   margin-top: 20px;
   overflow-x: hidden;
   border: none;
+}
+
+#profile-table-purchases {
+  border-collapse: collapse;
+}
+
+#profile-table-purchases th {
+  font-size: 0.8rem;
+  font-weight: bold;
+  position: sticky;
+}
+
+#profile-table-purchases tr {
+  border-top: 1px solid #c7c7c7;
+}
+
+#profile-table-purchases tr:first-of-type {
+  border-bottom: 2px solid black;
+  border-top: none;
+}
+
+#profile-table-purchases tr:nth-of-type(2) {
+  border: none;
+}
+
+#profile-table-purchases tr td:nth-of-type(2) {
+  max-width: 300px;
+}
+
+#profile-table-purchases th,
+#profile-table-purchases td {
+  padding: 15px;
+  text-align: center;
+}
+
+#profile-table-purchases th .btn-delete-purchase,
+#profile-table-purchases td .btn-delete-purchase {
+  background-color: #d82f2f;
+  color: white;
 }
 
 #container-store {

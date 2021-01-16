@@ -53,6 +53,20 @@ class Database {
     }
 
     /**
+     * Get all rows inside a table by column and some value
+     */
+    protected function findAll(string $table_name, string $column_name, $column_value) {
+        $query = "SELECT * 
+                  FROM $table_name
+                  WHERE $column_name = $column_value";
+        
+        $stmt = $this->connect()->query($query); // Executes query
+        $rows = $stmt->fetchAll(); // Gets query results
+
+        return $rows;
+    }
+
+    /**
      * Find a row by id or email
      */
     protected function find(string $table_name, int $id = null, string $email = null) {
@@ -111,5 +125,14 @@ class Database {
 
         $stmt = $this->connect()->prepare($query);
         $stmt->execute($values);
+    }
+
+    protected function delete(string $table_name, int $id) {
+        $query = "DELETE 
+                FROM $table_name
+                WHERE id = ?";
+
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute([$id]);
     }
 }
