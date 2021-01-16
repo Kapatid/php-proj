@@ -3,7 +3,9 @@
 class ProfileController extends Controller{
     
     public static function index() {
-        $receiptRows = Receipt::getReceiptRows();
+        $receipt = new Receipt();
+
+        $receiptRows = $receipt->getReceiptRows();
         $itemIds = [];
         $items = [];
         $dates = [];
@@ -26,9 +28,11 @@ class ProfileController extends Controller{
     }
 
     public static function deleteReceipt() {{
+        $receipt = new Receipt();
+
         $id = $_POST['item-id'];
 
-        Receipt::delReceipt($id);
+        $receipt->delReceipt($id);
         self::goToPage("/profile");
     }}
 }

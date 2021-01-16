@@ -1,15 +1,19 @@
 <?php
 
 class User extends Database {
+    private $db;
+
+    function __construct()
+    {
+        $this->db = new Database();
+    }
     
-    public static function getUsers() {
-        $db = new Database();
-        return $db->getAll("users");
+    public function getUsers() {
+        return $this->db->getAll("users");
     }
 
-    public static function findUser(int $id = 0, string $email = '', string $password = '') {
-        $db = new Database();
-        $user = $db->find("users", $id, $email);
+    public function findUser(int $id = 0, string $email = '', string $password = '') {
+        $user = $this->db->find("users", $id, $email);
 
         if (password_verify($password, $user['password'])) {
             return $user;
@@ -27,11 +31,10 @@ class User extends Database {
         "password" => $password
         );
 
-        $db = new Database();
-        $db->create("users", $data);
+        $this->db->create("users", $data);
     }
 
-    public static function updateUser(int $id, string $first_name, string $last_name, string $department) {
+    public function updateUser(int $id, string $first_name, string $last_name, string $department) {
         date_default_timezone_set('Asia/Hong_Kong');
 
         $data = array(
@@ -41,7 +44,6 @@ class User extends Database {
             "updated_at" => date("Y-m-d H:i:s")
         );
 
-        $db = new Database();
-        return $db->update("users", $id, $data);
+        return $this->db->update("users", $id, $data);
     }
 }

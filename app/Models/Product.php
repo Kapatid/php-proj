@@ -2,13 +2,18 @@
 
 class Product extends Database {
 
-    public static function getProducts() {
-        $db = new Database();
-        return $db->getAll("store_items");
+    private $db;
+
+    function __construct()
+    {
+        $this->db = new Database();
     }
 
-    public static function getProduct(int $id) {
-        $db = new Database();
-        return $db->find("store_items", $id);
+    public function getProducts() {
+        return $this->db->getAll("store_items");
+    }
+
+    public function getProduct(int $id) {
+        return $this->db->find("store_items", $id);
     }
 }
