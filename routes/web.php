@@ -5,7 +5,6 @@ if (isset($_GET['item_id'])) {
     $id = $_GET['item_id'];
 }
 
-
 function universalRoutes() {
     /**
      * Route::set() takes in the uri request

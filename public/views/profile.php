@@ -9,7 +9,7 @@
             <th></th>
         </tr>
         <?php 
-        
+            // Display all receipts in rows
             if (isset($_SESSION['profile-receipts'])) {
                 $ids = $_SESSION['profile-receipts-ids'];
                 $receipts = $_SESSION['profile-receipts'];

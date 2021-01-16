@@ -19,15 +19,12 @@
         <nav class="main-navigation-scroll">
             <input type="checkbox" id="nav-toggle" />
 
-            <a href="home" class="logo" tabindex="-1"
-                >LOGO<img src="" />
-            </a>
+            <a href="home" class="logo" tabindex="-1">LOGO<img src="" /></a>
 
             <div class="nav-links">
                 <a href="home" class="link-enabled">Home</a>
 
-
-                <?php
+                <?php // Toggle nav links
                     if (isset($_SESSION['auth']) && $_SESSION['auth'] != 'guest') {
                         echo '<a href="store">Store</a>';
                         echo '<a href="profile">Profile</a>';
@@ -39,7 +36,7 @@
                         echo '<a href="login">Login</a>
                             <a href="signup">Sign Up</a>';
                     }
-                    ?>
+                ?>
             </div>
 
             <label for="nav-toggle" class="icon-menu">
@@ -51,6 +48,7 @@
     </header>
 
     <section class="main-body">
+        <!-- Includes all of the pages based on page name -->
         <?php require_once('./routes/web.php');?>
     </section>
     

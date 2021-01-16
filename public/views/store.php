@@ -25,7 +25,7 @@
 
     <div id="container-store-items">
         <?php 
-            // Show each items in the store database
+            // Display each product from the store table/database
             if (isset($_SESSION['store-items']) || !empty($_SESSION['store-items'])) {
                 $items = $_SESSION['store-items'];
 

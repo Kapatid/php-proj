@@ -7,7 +7,7 @@ class Controller{
      * 
      */
     public static function CreateView(string $viewName) {
-
+        
         if (file_exists("./public/views/" . $viewName . ".php")) {
             require_once "./public/views/" . $viewName . ".php";
         }

@@ -32,6 +32,12 @@ function pageFullyLoaded(e) {
   storeFunctions();
 }
 
+/**
+ * Search bar,
+ * Add to cart button,
+ * Buy button,
+ * Store modal
+ */
 function storeFunctions() {
   var itemsInCart = [];
   var itemString = "";
@@ -168,6 +174,9 @@ function storeSearch() {
   }
 }
 
+/**
+ * Update cart total text
+ */
 function updateCartTotal() {
   let allCartItemPrices = $(".cart-item-price")
     .map(function () {
