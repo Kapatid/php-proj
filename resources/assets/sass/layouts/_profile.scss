@@ -1,7 +1,7 @@
 #profile-table-purchases {
   border-collapse: collapse;
   th {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: bold;
     position: sticky;
   }
@@ -17,8 +17,21 @@
       border: none;
     }
 
+    td:first-of-type {
+      display: grid;
+      place-items: top;
+    }
+
     td:nth-of-type(2) {
       max-width: 300px;
+
+      p {
+        font-weight: bold;
+      }
+    }
+
+    td {
+      font-size: 0.8rem;
     }
   }
 
@@ -28,6 +41,9 @@
     text-align: center;
 
     .btn-delete-purchase {
+      height: 35px;
+      width: 90px;
+      font-size: 0.8rem;
       background-color: rgb(216, 47, 47);
       color: white;
     }

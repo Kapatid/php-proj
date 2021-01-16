@@ -41,7 +41,7 @@
                 
                             <h5 class="store-item-name">' . $item_name . '</h5>
                 
-                            <p class="store-item-price">₱ ' . $item_price . '</p>
+                            <p class="store-item-price">₱ ' . number_format($item_price, 2) . '</p>
                 
                             <div class="container-store-add">
                                 <a class="btn btn-store-add" data-id="' . $item_id . '">

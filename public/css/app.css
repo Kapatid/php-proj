@@ -319,7 +319,7 @@ header > nav .icon-menu .line {
 }
 
 #profile-table-purchases th {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: bold;
   position: sticky;
 }
@@ -337,8 +337,21 @@ header > nav .icon-menu .line {
   border: none;
 }
 
+#profile-table-purchases tr td:first-of-type {
+  display: grid;
+  place-items: top;
+}
+
 #profile-table-purchases tr td:nth-of-type(2) {
   max-width: 300px;
+}
+
+#profile-table-purchases tr td:nth-of-type(2) p {
+  font-weight: bold;
+}
+
+#profile-table-purchases tr td {
+  font-size: 0.8rem;
 }
 
 #profile-table-purchases th,
@@ -349,6 +362,9 @@ header > nav .icon-menu .line {
 
 #profile-table-purchases th .btn-delete-purchase,
 #profile-table-purchases td .btn-delete-purchase {
+  height: 35px;
+  width: 90px;
+  font-size: 0.8rem;
   background-color: #d82f2f;
   color: white;
 }

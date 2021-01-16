@@ -1,28 +1,4 @@
 <section>
-    <!--     
-    <?php
-        // $text = new SecondClass();
-        // echo $text->someData();
-
-        // $person = new Person("Roi", 10);
-        // // unset($person); // Destroy an object
-        // echo "<br>" . $person->getName() . "<br>"; 
-
-        // // Access static property/method
-        // echo Person::$dringkingAge . "<br>";
-        // Person::setDrinkingAge(21);
-        // echo Person::$dringkingAge . "<br>";
-
-        // try {
-        //     Person::setDrinkingAge("something");
-        //     echo Person::$dringkingAge;
-        // } catch (TypeError $e) {
-        //     echo "ERROR: " . $e->getMessage();
-        // }
-    ?>
-
-    <br> <br> <br> -->
-
     <p style="margin-top: 140px;">Hello! <?php echo $_SESSION['auth']['first_name']; ?></p> <br>
 
     <table id="profile-table-purchases">
@@ -32,7 +8,6 @@
             <th>DATE OF PURCHASE</th>
             <th></th>
         </tr>
-        
         <?php 
         
             if (isset($_SESSION['profile-receipts'])) {
@@ -46,6 +21,7 @@
                     $itemId = 0;
                     $itemNames = "";
                     $itemPrices = "";
+                    $itemTotal = [];
                     $itemDate = "";
 
                     // Loop through each items in receipt
@@ -54,13 +30,17 @@
                         
                         $itemId = $ids[$i];
                         $itemNames .= $receipts[$i][$j]->item_name . "<br>";
-                        $itemPrices .= $receipts[$i][$j]->item_price . "<br>";
-                        $itemDate = date('Y-m-d' , strtotime($dates[$i])) . "<br>";
+                        $itemPrices .= "₱ " . number_format($receipts[$i][$j]->item_price, 2) . "<br>";
+                        array_push($itemTotal, $receipts[$i][$j]->item_price); ;
+                        $itemDate = date('Y-m-d h:i A' , strtotime($dates[$i])) . "<br>";
                     } 
                     
                     echo '<tr>
                             <td>' . $itemNames . '</td>
-                            <td>' . $itemPrices . '</td>
+                            <td>' . $itemPrices . '<hr> <p class="profile-item-total">₱ ' . 
+                                                        number_format(array_sum($itemTotal), 2) . 
+                                                        '</p> 
+                                                    </td>
                             <td>' . $itemDate . '</td>
                             <td>
                                 <form action="purchase-delete" method="POST">

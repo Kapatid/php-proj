@@ -126,7 +126,10 @@ class Database {
         $stmt = $this->connect()->prepare($query);
         $stmt->execute($values);
     }
-
+    
+    /**
+     * Delete row inside a table
+     */
     protected function delete(string $table_name, int $id) {
         $query = "DELETE 
                 FROM $table_name
