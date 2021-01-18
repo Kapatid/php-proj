@@ -5,6 +5,8 @@ if (isset($_GET['item_id'])) {
     $id = $_GET['item_id'];
 }
 
+//$_SESSION['routes'] = ['/', '/home', '/login', '/signup', '/store', '/purchase', '/purchase-delete', "/item?item_id=$id"];
+
 function universalRoutes() {
     /**
      * Route::set() takes in the uri request
@@ -25,9 +27,9 @@ function universalRoutes() {
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     // Run authPage to prevent guest and user from accessing certain pages
-    if (Controller::authPage('auth', 'guest')) {
+    if (Controller::authPage('auth', 'guest') || !isset($_SESSION['auth'])) {
         universalRoutes();
-
+        echo '<pre>' . print_r($_SESSION) . '</pre>';
         Route::set('/login', function() {
             LoginController::CreateView('Login');
         });
@@ -42,8 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         }
     }
     
-    if (!Controller::authPage('auth', 'guest')) {
+    if (!Controller::authPage('auth', 'guest') || $_SESSION['auth'] != 'guest') {
         universalRoutes();
+        echo '<pre>' . print_r($_SESSION) . '</pre>';
 
         Route::set('/profile', function() {
             ProfileController::index();

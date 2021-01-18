@@ -32,6 +32,7 @@
     <div id="error-contents">
         <h1>ERROR</h1>
         Page Not Found
+        <?php echo $_SERVER['REQUEST_URI']; ?>
     </div>
 </body>
 </html>

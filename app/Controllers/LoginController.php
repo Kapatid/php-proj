@@ -16,6 +16,7 @@ class LoginController extends Controller {
             parent::goToPage("/home");
         } 
         else {
+            $_SESSION['auth'] = 'guest';
             echo '<p style="color: red; margin-top:200px"> USER NOT FOUND!<p>';
             //parent::goToPage("/login");
         }

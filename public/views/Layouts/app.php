@@ -25,7 +25,7 @@
                 <a href="home" class="link-enabled">Home</a>
 
                 <?php // Toggle nav links
-                    if (isset($_SESSION['auth']) && $_SESSION['auth'] != 'guest') {
+                    if ($_SESSION['auth'] != 'guest') {
                         echo '<a href="store">Store</a>';
                         echo '<a href="profile">Profile</a>';
                         echo '<form action="logout" method="POST">
