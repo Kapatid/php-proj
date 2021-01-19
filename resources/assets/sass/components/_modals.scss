@@ -41,5 +41,11 @@
       overflow-x: hidden;
       border: none;
     }
+
+    @media only screen and (max-width: 768px) {
+      margin-top: 85px;
+      min-width: 450px;
+      max-width: 60%;
+    }
   }
 }

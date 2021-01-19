@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport", initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     
     <link rel="icon" href=""/>
     <title>CRUD</title>

@@ -1,4 +1,4 @@
-<section>
+<section id="container-profile">
     <p style="margin-top: 140px;">Hello! <?php echo $_SESSION['auth']['first_name']; ?></p> <br>
 
     <table id="profile-table-purchases">

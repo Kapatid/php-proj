@@ -25,6 +25,10 @@
       border: none;
       outline: none;
     }
+
+    @media only screen and (max-width: 768px) {
+      width: 350px;
+    }
   }
 
   #container-store-items {
@@ -32,6 +36,7 @@
     margin-top: 30px;
 
     display: grid;
+    place-items: center;
     grid-gap: 5.36rem;
     grid-template-columns: repeat(auto-fit, minmax(150px, 0.5fr));
 
@@ -72,6 +77,11 @@
         }
       }
     }
+
+    @media only screen and (max-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
   }
 }
 
@@ -103,6 +113,11 @@
 
     display: none;
     place-items: center;
+  }
+
+  @media only screen and (max-width: 768px) {
+    left: 80%;
+    bottom: 40px;
   }
 }
 

@@ -6,25 +6,22 @@ window.addEventListener("load", pageFullyLoaded, false);
 
 function theDomHasLoaded(e) {
   //#region Nav effects
-  let previousScroll = 0;
-
-  $(window).scroll(function () {
-    let currentScroll = $(this).scrollTop();
-
-    if (
-      currentScroll > 0 &&
-      currentScroll < $(document).height() - $(window).height()
-    ) {
-      if (currentScroll > previousScroll) {
-        $(".main-navigation-scroll").slideUp(200);
-
-        $("#nav-toggle").prop("checked", false);
-      } else {
-        $(".main-navigation-scroll").slideDown(200);
-      }
-      previousScroll = currentScroll;
-    }
-  });
+  // let previousScroll = 0;
+  // $(window).scroll(function () {
+  //   let currentScroll = $(this).scrollTop();
+  //   if (
+  //     currentScroll > 0 &&
+  //     currentScroll < $(document).height() - $(window).height()
+  //   ) {
+  //     if (currentScroll > previousScroll) {
+  //       $(".main-navigation-scroll").slideUp(200);
+  //       $("#nav-toggle").prop("checked", false);
+  //     } else {
+  //       $(".main-navigation-scroll").slideDown(200);
+  //     }
+  //     previousScroll = currentScroll;
+  //   }
+  // });
   //#endregion Nav effects
 }
 
@@ -85,17 +82,17 @@ function storeFunctions() {
       items = JSON.parse(response);
 
       for (i = 0; i < items.length; i++) {
+        let itemPrice = thousandsSeparators(items[i]["item_price"]);
         let newSetOfITems = `<tr>
-                            <td>Image</td>
                             <td class="cart-item-name">${items[i]["item_name"]}</td>
-                            <td class="cart-item-price">₱ ${items[i]["item_price"]}</td>
+                            <td class="cart-item-price">₱ ${itemPrice}</td>
                         </tr>`;
+
         // Prevent product duplicates in receipt
         if (!itemString.includes(newSetOfITems)) {
           itemString += `<tr>
-                            <td>Image</td>
                             <td class="cart-item-name">${items[i]["item_name"]}</td>
-                            <td class="cart-item-price">₱ ${items[i]["item_price"]}</td>
+                            <td class="cart-item-price">₱ ${itemPrice}</td>
                         </tr>`;
         }
       }
@@ -106,20 +103,21 @@ function storeFunctions() {
 
   $(".open-modal").on("click", function () {
     // Udpate receipt
-    $("#modal-content-checkout").html(`<table>
-                                          <tr>
-                                              <th>IMAGE</th>
-                                              <th>ITEM NAME</th>
-                                              <th>PRICE</th>
-                                          </tr>
-                                          ${itemString}
-                                          <tr style="border-top: 2px solid black;">
-                                              <td colspan="2" style="text-align: end; font-size:0.8rem; font-weight:bold;">
-                                                TOTAL:
-                                              </td>
-                                              <td id="cart-total">₱ 0</td>
-                                          </tr>
-                                      </table>`);
+    if (itemsInCart.length >= 1) {
+      $("#modal-content-checkout").html(`<table>
+                                            <tr>
+                                                <th>ITEM NAME</th>
+                                                <th>PRICE</th>
+                                            </tr>
+                                            ${itemString}
+                                            <tr style="border-top: 2px solid black;">
+                                                <td style="text-align: end; font-size:0.8rem; font-weight:bold;">
+                                                  TOTAL:
+                                                </td>
+                                                <td id="cart-total">₱ 0</td>
+                                            </tr>
+                                        </table>`);
+    }
 
     updateCartTotal();
     const height = $(window).height();
@@ -180,7 +178,7 @@ function storeSearch() {
 function updateCartTotal() {
   let allCartItemPrices = $(".cart-item-price")
     .map(function () {
-      return parseFloat(this.innerHTML.replace("₱ ", ""));
+      return parseFloat(this.innerHTML.replace("₱ ", "").replace(",", ""));
     })
     .get();
 
