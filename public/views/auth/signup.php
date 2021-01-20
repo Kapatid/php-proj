@@ -1,8 +1,8 @@
 <form action="signup" method="POST" class="container-signup">
 
-    <a href="home" id="logo"><img src="" alt="Logo" /></a> 
+    <!-- <a href="home" id="logo"><img src="" alt="Logo" /></a>  -->
 
-    <h3>SIGN UP</h1>
+    <h3>SIGN UP</h3>
 
     <section>
         <p>

@@ -30,6 +30,13 @@
   }
 }
 
+.btn2 {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
 .input {
   border-radius: 60px;
   border: rgb(214, 214, 214) 0.8px solid;
@@ -51,6 +58,20 @@
   &:hover {
     color: white;
   }
+}
+
+.btn-carousel-seemore {
+  border-radius: 50px;
+  border: none;
+  padding: 8px 20px 8px 20px;
+  background-color: white;
+  box-shadow: 0 0.6px 1.1px rgba(0, 0, 0, 0.075), 0 5px 9px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-carousel-seemore:hover {
+  box-shadow: 0 0.6px 1.1px rgba(0, 0, 0, 0.1), 0 5px 9px rgba(0, 0, 0, 0.25);
 }
 
 .border-red {

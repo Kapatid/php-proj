@@ -1,11 +1,28 @@
 #container-profile {
   display: grid;
   place-items: center;
+  margin-top: 140px;
 
   width: 100%;
 
+  .imageholder {
+    p {
+      text-align: center;
+    }
+
+    img {
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+      box-shadow: 0 0.6px 1.1px rgba(0, 0, 0, 0.075),
+        0 5px 9px rgba(0, 0, 0, 0.15);
+    }
+  }
+
   #profile-table-purchases {
     border-collapse: collapse;
+    margin-top: 50px;
+
     th {
       font-size: 0.9rem;
       font-weight: bold;

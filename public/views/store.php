@@ -12,7 +12,7 @@
         </div>
 
         <div class="modal-footer">
-            <a class="btn btn-store-buy" style="color:white; background-color:rgb(49, 180, 49)">BUY NOW</a>
+            <a class="btn btn-store-buy" style="color:white; background-color: #1e1e1e">BUY NOW</a>
         </div>
     </div>
 </div>

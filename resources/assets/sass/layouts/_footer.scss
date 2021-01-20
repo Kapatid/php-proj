@@ -1,0 +1,35 @@
+footer {
+  background-color: #1e1e1e;
+  color: white;
+  padding: 40px;
+  margin-top: 140px;
+
+  display: grid;
+  place-items: center;
+  width: 100%;
+
+  .footerdiv {
+    width: 60%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    .footer-content {
+      display: grid;
+      font-size: 0.8rem;
+
+      a {
+        &:not(:first-of-type) {
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+
+  .copyrights {
+    padding-top: 45px;
+
+    p {
+      font-size: 0.8rem;
+    }
+  }
+}

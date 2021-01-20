@@ -31,8 +31,8 @@
 <body>
     <div id="error-contents">
         <h1>ERROR</h1>
-        Page Not Found
-        <?php echo $_SERVER['REQUEST_URI']; ?>
+        Page Not Found:
+        <p style="font-weight: bold;"><?php echo $_SERVER['REQUEST_URI']; ?></p>
     </div>
 </body>
 </html>

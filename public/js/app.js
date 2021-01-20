@@ -27,6 +27,7 @@ function theDomHasLoaded(e) {
 
 function pageFullyLoaded(e) {
   storeFunctions();
+  carousel();
 }
 
 /**
@@ -200,4 +201,74 @@ function thousandsSeparators(num) {
   var num_parts = num.toString().split(".");
   num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return num_parts.join(".");
+}
+
+function carousel() {
+  // const minLeft = parseInt(
+  //     $(".container-container")
+  //         .css("left")
+  //         .replace("%", "")
+  // ); // Minimum left percentage
+
+  const minLeft = 100;
+
+  const maxSteps = $("#steps-counter").attr("max");
+  let currentLeft = minLeft; // Left percentage that changes based on what is pressed
+  let currentStep = 1; // Current step the user is in
+
+  checkStep(currentStep, maxSteps);
+
+  $(`.rect-${currentStep}`).css({
+    "background-color": "rgba(0, 0, 0, 0.568)",
+  });
+
+  $(".btn-next").on("click", function () {
+    if (currentLeft !== -minLeft) {
+      $(`.rect-${currentStep}`).css({
+        "background-color": "rgba(128, 128, 128, 0.459)",
+      }); // Previous step
+      currentStep++;
+      $(`.rect-${currentStep}`).css({
+        "background-color": "rgba(0, 0, 0, 0.568)",
+      }); // Current step
+      currentLeft -= minLeft;
+      $(".container-container").animate({ left: `${currentLeft}%` }, 500); // Step container animation
+      console.log(currentLeft);
+      console.log(minLeft);
+    }
+
+    checkStep(currentStep, maxSteps);
+  });
+
+  $(".btn-back").on("click", function () {
+    if (currentLeft !== minLeft) {
+      $(`.rect-${currentStep}`).css({
+        "background-color": "rgba(128, 128, 128, 0.459)",
+      });
+      currentStep--;
+      $(`.rect-${currentStep}`).css({
+        "background-color": "rgba(0, 0, 0, 0.568)",
+      });
+      currentLeft += minLeft;
+      $(".container-container").animate({ left: `${currentLeft}%` }, 500);
+      console.log(currentLeft);
+      console.log(minLeft);
+    }
+
+    checkStep(currentStep, maxSteps);
+  });
+}
+
+function checkStep(currentStep, maxSteps) {
+  if (currentStep != 1) {
+    $(".btn-back").css("visibility", "visible");
+  } else {
+    $(".btn-back").css("visibility", "hidden");
+  }
+
+  if (currentStep < maxSteps) {
+    $(".btn-next").css("visibility", "visible");
+  } else {
+    $(".btn-next").css("visibility", "hidden");
+  }
 }

@@ -62,5 +62,37 @@
     <script>
         <?php echo file_get_contents('./public/js/app.js');?>
     </script>
+
+<footer>
+    <div class="footerdiv">
+        <div class="footer-content">
+            <a href="#">ABOUT</a>
+            <a href="#">PRIVACY AND SECURITY</a>
+            <a href="#">ACCESSIBILITY</a>
+        </div>
+
+        <div class="footer-content">
+            <a href="#">CONTACT</a>
+            <a href="#">SITEMAP</a>
+            <a href="#">EMAIL PREFERENCES</a>
+        </div>
+
+        <div class="footer-content">
+            <a href="#">CAREER</a>
+            <a href="#">INVESTORS</a>
+            <a href="#">RETURN POLICY</a>
+        </div>
+
+        <div class="footer-content">
+            <a href="#">PARTNER DEVELOPER LAB</a>
+            <a href="#">TERM OF USE</a>
+            <a href="#">STUDENT DISCOUNT</a>
+        </div>
+    </div>
+
+    <div class="copyrights">
+        <p>©2021 BRUH. All right reserved</p>
+    </div>
+</footer>
 </body>
 </html>

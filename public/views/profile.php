@@ -1,5 +1,10 @@
 <section id="container-profile">
-    <p style="margin-top: 140px;">Hello! <?php echo $_SESSION['auth']['first_name']; ?></p> <br>
+    <div class="imageholder">
+        <img src=".\public\img\placeholder.png" alt="placeholder"> 
+        <p style="margin-top: 10px;">Hello! <?php echo $_SESSION['auth']['first_name']; ?> <?php echo $_SESSION['auth']['last_name']; ?></p> <br>
+    </div>
+
+    <button class="btn-carousel-seemore">EDIT</button>
 
     <table id="profile-table-purchases">
         <tr>

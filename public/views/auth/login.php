@@ -1,9 +1,9 @@
 <form action="login" method="POST" class="container-login">
 
-    <a href="home" id="logo"><img src="" alt="Logo" /></a> 
+    <!-- <a href="home" id="logo"><img src="" alt="Logo" /></a>  -->
 
     <section>
-        <h3>LOGIN</h1>
+        <h3>LOGIN</h3>
     </section>
 
     <section>
