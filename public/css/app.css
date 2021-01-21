@@ -162,7 +162,7 @@ nav {
   height: 12%;
   z-index: 1;
   position: fixed;
-  background: black;
+  background-color: #1e1e1e;
 }
 
 nav #nav-toggle {
@@ -587,14 +587,16 @@ footer {
 }
 
 footer .footerdiv {
-  width: 60%;
+  width: 55%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
+  grid-template-columns: 25% 25% 25% 25%;
 }
 
 footer .footerdiv .footer-content {
   display: grid;
   font-size: 0.8rem;
+  width: fit-content;
 }
 
 footer .footerdiv .footer-content a:not(:first-of-type) {

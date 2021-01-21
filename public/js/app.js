@@ -6,22 +6,22 @@ window.addEventListener("load", pageFullyLoaded, false);
 
 function theDomHasLoaded(e) {
   //#region Nav effects
-  // let previousScroll = 0;
-  // $(window).scroll(function () {
-  //   let currentScroll = $(this).scrollTop();
-  //   if (
-  //     currentScroll > 0 &&
-  //     currentScroll < $(document).height() - $(window).height()
-  //   ) {
-  //     if (currentScroll > previousScroll) {
-  //       $(".main-navigation-scroll").slideUp(200);
-  //       $("#nav-toggle").prop("checked", false);
-  //     } else {
-  //       $(".main-navigation-scroll").slideDown(200);
-  //     }
-  //     previousScroll = currentScroll;
-  //   }
-  // });
+  let previousScroll = 0;
+  $(window).scroll(function () {
+    let currentScroll = $(this).scrollTop();
+    if (
+      currentScroll > 0 &&
+      currentScroll < $(document).height() - $(window).height()
+    ) {
+      if (currentScroll > previousScroll) {
+        $(".main-navigation-scroll").slideUp(100);
+        $("#nav-toggle").prop("checked", false);
+      } else {
+        $(".main-navigation-scroll").slideDown(100);
+      }
+      previousScroll = currentScroll;
+    }
+  });
   //#endregion Nav effects
 }
 
@@ -203,72 +203,153 @@ function thousandsSeparators(num) {
   return num_parts.join(".");
 }
 
+/**
+ * Can be used for multiple carousels just follow
+ * HTML structure
+ *
+ * Author: Nadji Tan
+ */
 function carousel() {
-  // const minLeft = parseInt(
+  // const MINLEFT = parseInt(
   //     $(".container-container")
   //         .css("left")
   //         .replace("%", "")
   // ); // Minimum left percentage
 
-  const minLeft = 100;
+  let allCarousel = $(".carousel")
+    .map(function () {
+      return this;
+    })
+    .get();
 
-  const maxSteps = $("#steps-counter").attr("max");
-  let currentLeft = minLeft; // Left percentage that changes based on what is pressed
-  let currentStep = 1; // Current step the user is in
+  // This is used because left percentage keeps getting out of bounds
+  const MINLEFT = 100;
 
-  checkStep(currentStep, maxSteps);
+  for (let i in allCarousel) {
+    const maxSteps = $("#steps-counter").attr("max");
+    let currentLeft = MINLEFT; // Left percentage that changes based on what is pressed
+    let currentStep = 1; // Current step the user is in
 
-  $(`.rect-${currentStep}`).css({
-    "background-color": "rgba(0, 0, 0, 0.568)",
-  });
+    checkStep(currentStep, maxSteps, allCarousel[i]);
 
-  $(".btn-next").on("click", function () {
-    if (currentLeft !== -minLeft) {
-      $(`.rect-${currentStep}`).css({
-        "background-color": "rgba(128, 128, 128, 0.459)",
-      }); // Previous step
-      currentStep++;
-      $(`.rect-${currentStep}`).css({
-        "background-color": "rgba(0, 0, 0, 0.568)",
-      }); // Current step
-      currentLeft -= minLeft;
-      $(".container-container").animate({ left: `${currentLeft}%` }, 500); // Step container animation
-      console.log(currentLeft);
-      console.log(minLeft);
-    }
+    $(allCarousel[i]).find(`.rect-${currentStep}`).css({
+      "background-color": "rgba(0, 0, 0, 0.568)",
+    });
 
-    checkStep(currentStep, maxSteps);
-  });
+    // STEP NEXT BUTTON
+    $(allCarousel[i])
+      .find(".btn-next")
+      .on("click", function () {
+        if (currentLeft !== -MINLEFT) {
+          $(allCarousel[i]).find(`.rect-${currentStep}`).css({
+            "background-color": "rgba(128, 128, 128, 0.459)",
+          }); // Previous step
 
-  $(".btn-back").on("click", function () {
-    if (currentLeft !== minLeft) {
-      $(`.rect-${currentStep}`).css({
-        "background-color": "rgba(128, 128, 128, 0.459)",
+          currentStep++;
+
+          $(allCarousel[i]).find(`.rect-${currentStep}`).css({
+            "background-color": "rgba(0, 0, 0, 0.568)",
+          }); // Current step
+
+          currentLeft -= MINLEFT;
+
+          $(allCarousel[i])
+            .find(".container-container")
+            .animate({ left: `${currentLeft}%` }, 500); // Step container animation
+        }
+
+        checkStep(currentStep, maxSteps, allCarousel[i]);
       });
-      currentStep--;
-      $(`.rect-${currentStep}`).css({
-        "background-color": "rgba(0, 0, 0, 0.568)",
-      });
-      currentLeft += minLeft;
-      $(".container-container").animate({ left: `${currentLeft}%` }, 500);
-      console.log(currentLeft);
-      console.log(minLeft);
-    }
 
-    checkStep(currentStep, maxSteps);
-  });
+    // STEP BACK BUTTON
+    $(allCarousel[i])
+      .find(".btn-back")
+      .on("click", function () {
+        if (currentLeft !== MINLEFT) {
+          $(allCarousel[i]).find(`.rect-${currentStep}`).css({
+            "background-color": "rgba(128, 128, 128, 0.459)",
+          });
+
+          currentStep--;
+
+          $(allCarousel[i]).find(`.rect-${currentStep}`).css({
+            "background-color": "rgba(0, 0, 0, 0.568)",
+          });
+
+          currentLeft += MINLEFT;
+
+          $(allCarousel[i])
+            .find(".container-container")
+            .animate({ left: `${currentLeft}%` }, 500);
+        }
+
+        checkStep(currentStep, maxSteps, allCarousel[i]);
+      });
+  }
+
+  // CAN ONLY BE USED FOR ONE CAROUSEL
+  // const maxSteps = $("#steps-counter").attr("max");
+  // let currentLeft = MINLEFT; // Left percentage that changes based on what is pressed
+  // let currentStep = 1; // Current step the user is in
+
+  // checkStep(currentStep, maxSteps);
+
+  // $(`.rect-${currentStep}`).css({
+  //   "background-color": "rgba(0, 0, 0, 0.568)",
+  // });
+
+  // $(".btn-next").on("click", function () {
+  //   if (currentLeft !== -MINLEFT) {
+  //     $(`.rect-${currentStep}`).css({
+  //       "background-color": "rgba(128, 128, 128, 0.459)",
+  //     }); // Previous step
+
+  //     currentStep++;
+
+  //     $(`.rect-${currentStep}`).css({
+  //       "background-color": "rgba(0, 0, 0, 0.568)",
+  //     }); // Current step
+
+  //     currentLeft -= MINLEFT;
+
+  //     $(".container-container").animate({ left: `${currentLeft}%` }, 500); // Step container animation
+  //   }
+
+  //   checkStep(currentStep, maxSteps);
+  // });
+
+  // $(".btn-back").on("click", function () {
+  //   if (currentLeft !== MINLEFT) {
+  //     $(`.rect-${currentStep}`).css({
+  //       "background-color": "rgba(128, 128, 128, 0.459)",
+  //     });
+
+  //     currentStep--;
+
+  //     $(`.rect-${currentStep}`).css({
+  //       "background-color": "rgba(0, 0, 0, 0.568)",
+  //     });
+
+  //     currentLeft += MINLEFT;
+
+  //     $(".container-container").animate({ left: `${currentLeft}%` }, 500);
+  //   }
+
+  //   checkStep(currentStep, maxSteps);
+  // });
 }
 
-function checkStep(currentStep, maxSteps) {
+// $(parentElement).find    Makes it usable for multiple carousels
+function checkStep(currentStep, maxSteps, parentElement) {
   if (currentStep != 1) {
-    $(".btn-back").css("visibility", "visible");
+    $(parentElement).find(".btn-back").css("visibility", "visible");
   } else {
-    $(".btn-back").css("visibility", "hidden");
+    $(parentElement).find(".btn-back").css("visibility", "hidden");
   }
 
   if (currentStep < maxSteps) {
-    $(".btn-next").css("visibility", "visible");
+    $(parentElement).find(".btn-next").css("visibility", "visible");
   } else {
-    $(".btn-next").css("visibility", "hidden");
+    $(parentElement).find(".btn-next").css("visibility", "hidden");
   }
 }

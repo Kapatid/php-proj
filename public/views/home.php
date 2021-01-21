@@ -99,7 +99,7 @@
     </div>
 
     <div class="container-carousel2">
-        <div class="carousel2">
+        <div class="carousel carousel2">
             <button class="btn2 btn-back"><img src=".\public\img\arrow_back_ios_new-24px.svg" alt=""></button>
 
             <div class="carousel-content">

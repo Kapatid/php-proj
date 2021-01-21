@@ -9,13 +9,15 @@ footer {
   width: 100%;
 
   .footerdiv {
-    width: 60%;
+    width: 55%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    place-items: center;
+    grid-template-columns: 25% 25% 25% 25%;
 
     .footer-content {
       display: grid;
       font-size: 0.8rem;
+      width: fit-content;
 
       a {
         &:not(:first-of-type) {
