@@ -776,14 +776,12 @@ body {
 }
 
 .home .container-carousel2 .carousel2 .btn-back {
-  margin-top: 280px;
   left: 5%;
   position: absolute;
   z-index: 2;
 }
 
 .home .container-carousel2 .carousel2 .btn-next {
-  margin-top: 280px;
   right: 5%;
   position: absolute;
 }
@@ -800,7 +798,8 @@ body {
 .home .container-steps .rect-2,
 .home .container-steps .rect-3 {
   width: 30px;
-  height: 8px;
+  height: 4px;
+  border-radius: 3px;
   background-color: rgba(128, 128, 128, 0.459);
   color: white;
   font-weight: 700;
